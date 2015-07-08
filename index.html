@@ -1,0 +1,34 @@
+<html>
+<head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script type="text/javascript" src="indexeddb.js"></script>
+</head>
+<body>
+<h3>IndexedDb Tutorial</h3>
+
+<div>
+	<h4>Add Employees</h4>
+	<form id="frm_employee">
+	Name <input type="text" id="name" required>
+	Employee ID <input type="text" id="id" required>
+	Designation <input type="text" id="desg" required>
+	<button id="add_employee">ADD</button>
+	</form>
+</div>
+<div>
+	<h4>Search</h4>
+	By Name <input type="text" id="byname">
+	<button id="search">Search</button>
+</div>
+<br>
+<div>
+	<h4>List Employees</h4>	
+	<div id="data"></div>
+</div>
+<br>
+<div>
+	<button id="clear_store">Clear Employees</button>
+</div>
+
+</body>
+</html>
