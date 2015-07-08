@@ -76,8 +76,8 @@
 			var tx = db.transaction("employees", "readonly");
 			var store = tx.objectStore("employees");
 			// Get everything in the store
-		    //var keyRange = IDBKeyRange.lowerBound(0);
-		    var request = store.openCursor();
+		    var keyRange = IDBKeyRange.lowerBound(0);
+		    var request = store.openCursor(keyRange);
 
 		    // This fires once per row in the store. So, for simplicity,
 		    // collect the data in an array (data), and pass it in the
@@ -98,7 +98,7 @@
 		    };
 		},
 		renderEmployee:function(data){
-			var html = "<table>"
+			var html = "<table class='gridtable'>"
 						+"<tr>"
 						+"<th>Employee ID</th>"
 						+"<th>Name</th>"
