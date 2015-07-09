@@ -18,9 +18,9 @@
 			  var designationIndex = store.createIndex("by_designation", "designation");
 
 			  // Populate with initial data.
-			  store.put({name: "Amarnath Raja", designation: "CEO", empid: 1});
-			  store.put({name: "Jeena", designation: "PM", empid: 2});
-			  store.put({name: "Jayan", designation: "AVP", empid: 3});
+			  store.put({name: "Mohammed Safeer", designation: "Software Engineer", empid: "1"});
+			  store.put({name: "Damodaran", designation: "System Analyst", empid: "2"});
+			  store.put({name: "Ratheesh Kumar", designation: "Software Engineer", empid: "3"});
 			};
 
 			request.onsuccess = function() {
@@ -103,6 +103,7 @@
 						+"<th>Employee ID</th>"
 						+"<th>Name</th>"
 						+"<th>Designation</th>"
+						+"<th>Action</th>"
 						+"<tr>";
 			if(data.length==0){
 				html= "No data found</table>";
@@ -114,6 +115,7 @@
 								+"<td>"+dataObj.empid+"</td>"
 								+"<td>"+dataObj.name+"</td>"
 								+"<td>"+dataObj.designation+"</td>"
+								+"<td><a data-id='"+dataObj.empid+"' href='javascript:void(0);' class='deleteEmp'>Delete</a></td>"
 								+"</tr>";
 					}
 				}
@@ -126,6 +128,15 @@
 			var store = tx.objectStore("employees");
 			store.clear();
 			_root.listEmployee(_root.renderEmployee);
+		},
+		deleteEmployee:function(employee){
+			var tx = db.transaction("employees", "readwrite");
+			var store = tx.objectStore("employees");
+			var request = store.delete(employee);
+
+			request.onsuccess = function() { 				 
+				_root.listEmployee(_root.renderEmployee);
+			};
 		}
 
 	}
@@ -156,6 +167,11 @@
 
 		$('#clear_store').on('click',function(){
 			app.clearEmpObjStore();
+		});
+
+		$('body').on('click','.deleteEmp',function(){ 
+			var empId = $(this).attr('data-id');
+			app.deleteEmployee(empId);
 		});
 		
 
